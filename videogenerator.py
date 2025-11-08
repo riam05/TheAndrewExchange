@@ -86,7 +86,7 @@ def list_voices():
 def parse_script(script_text: str) -> List[Tuple[str, str]]:
     """
     Parse script text into list of (speaker, text) tuples.
-    Handles both **Carnegie:** and CARNEGIE: formats.
+    Handles formats: **Carnegie:**, **Carnegie**:, CARNEGIE:
     
     Args:
         script_text: The script text with speaker labels
@@ -104,24 +104,26 @@ def parse_script(script_text: str) -> List[Tuple[str, str]]:
         if not line:
             continue
         
-        # Check for speaker labels (handles **Carnegie:** or CARNEGIE: formats)
-        # Simple string matching for **Carnegie:** or **Mellon:**
-        if line.startswith('**Carnegie:**') or line.startswith('**carnegie:**'):
+        # Check for speaker labels - handles multiple formats:
+        # **Carnegie:** or **Carnegie**: or **Carnegie**:
+        # Match with flexible pattern for colon placement
+        carnegie_match = re.match(r'^\*\*Carnegie:?\*\*:?\s*(.*)$', line, re.IGNORECASE)
+        mellon_match = re.match(r'^\*\*Mellon:?\*\*:?\s*(.*)$', line, re.IGNORECASE)
+        
+        if carnegie_match:
             if current_speaker and current_text:
                 segments.append((current_speaker, ' '.join(current_text)))
             current_speaker = 'CARNEGIE'
-            # Remove **Carnegie:** from the line
-            text = line.replace('**Carnegie:**', '').replace('**carnegie:**', '').strip()
+            text = carnegie_match.group(1).strip()
             current_text = [text] if text else []
-        elif line.startswith('**Mellon:**') or line.startswith('**mellon:**'):
+        elif mellon_match:
             if current_speaker and current_text:
                 segments.append((current_speaker, ' '.join(current_text)))
             current_speaker = 'MELLON'
-            # Remove **Mellon:** from the line
-            text = line.replace('**Mellon:**', '').replace('**mellon:**', '').strip()
+            text = mellon_match.group(1).strip()
             current_text = [text] if text else []
         elif current_speaker:
-            # Remove markdown formatting
+            # Remove markdown formatting and add to current text
             clean_line = re.sub(r'\*\*', '', line)
             if clean_line:
                 current_text.append(clean_line)

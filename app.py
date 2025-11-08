@@ -1,5 +1,5 @@
 """
-Political Debate Analyzer API
+The Andrew Exchange API
 FastAPI backend for analyzing political debates and generating trending topics.
 """
 import os
@@ -18,7 +18,7 @@ from politics_news_scraper.categorizer import DynamicCategorizer
 from script_generator import generate_script_from_debate_json, save_script_to_file
 from videogenerator import generate_audio_from_script
 
-app = FastAPI(title="Political Debate Analyzer API")
+app = FastAPI(title="The Andrew Exchange API")
 
 # Enable CORS for React frontend
 app.add_middleware(

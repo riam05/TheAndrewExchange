@@ -151,7 +151,7 @@ function App() {
       {/* Main Content */}
       <div className="text-center mb-12 w-full max-w-4xl">
         <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
-          Political Debate Analyzer
+          The Andrew Exchange
         </h1>
         <p className="text-white/80 text-lg mb-8">Explore both sides of today's political debates</p>
         

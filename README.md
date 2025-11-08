@@ -1,6 +1,6 @@
-# Political Debate Analyzer
+# The Andrew Exchange
 
-A web application that discovers trending political topics, analyzes debates from both liberal and conservative perspectives, generates debate scripts, and creates AI-powered audio with distinct voices for each side.
+A web application that discovers trending political topics, analyzes debates from both liberal (Andrew Carnegie) and conservative (Andrew Mellon) perspectives, generates debate scripts, and creates AI-powered audio with distinct voices for each side.
 
 ## Tech Stack
 
