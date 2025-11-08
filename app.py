@@ -11,6 +11,7 @@ from pydantic import BaseModel
 from search import generate_args
 from politics_news_scraper.news_scraper import NewsScraper
 from politics_news_scraper.categorizer import DynamicCategorizer
+from script_generator import generate_script_from_debate_json, save_script_to_file
 
 app = FastAPI(title="Political Debate Analyzer API")
 
@@ -65,11 +66,41 @@ async def analyze_topic(request: TopicRequest):
         with open(output_path, "w") as f:
             json.dump(result, f, indent=2)
         
-        return {
-            "success": True,
-            "data": result,
-            "saved_to": output_path
-        }
+        # Extract debate JSON from the response
+        try:
+            content = result["choices"][0]["message"]["content"]
+            # Parse the JSON content
+            if content.strip().startswith("```"):
+                # Remove markdown code blocks
+                content = content.split("```")[1]
+                if content.startswith("json"):
+                    content = content[4:]
+                content = content.strip()
+            
+            debate_json = json.loads(content)
+            
+            # Generate script from debate JSON
+            script = generate_script_from_debate_json(debate_json)
+            
+            # Save script to new_script.txt
+            script_path = save_script_to_file(script, "new_script.txt")
+            
+            return {
+                "success": True,
+                "script": script,
+                "script_path": script_path,
+                "debate_data": debate_json,
+                "saved_to": output_path
+            }
+        except (json.JSONDecodeError, KeyError, Exception) as e:
+            print(f"Error generating script: {e}")
+            # If script generation fails, still return the original data
+            return {
+                "success": True,
+                "data": result,
+                "saved_to": output_path,
+                "error": f"Script generation failed: {str(e)}"
+            }
         
     except requests.exceptions.RequestException as e:
         raise HTTPException(status_code=500, detail=f"API request failed: {str(e)}")

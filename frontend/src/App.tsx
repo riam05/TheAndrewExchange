@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 interface AnalysisResult {
   success: boolean;
-  data: any;
+  script?: string;
+  script_path?: string;
+  debate_data?: any;
+  data?: any;
   saved_to: string;
+  error?: string;
 }
 
 function App() {
@@ -125,15 +129,53 @@ function App() {
       {results && (
         <div className="w-full max-w-6xl bg-white bg-opacity-95 rounded-3xl shadow-2xl p-8 backdrop-blur-sm mb-8">
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">Analysis Results</h2>
-            <p className="text-gray-600">Saved to: <code className="text-sm bg-gray-100 px-2 py-1 rounded">{results.saved_to}</code></p>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">Debate Script</h2>
+            {results.script_path && (
+              <p className="text-gray-600 mb-2">
+                Script saved to: <code className="text-sm bg-gray-100 px-2 py-1 rounded">{results.script_path}</code>
+              </p>
+            )}
+            {results.saved_to && (
+              <p className="text-gray-600 text-sm">
+                Data saved to: <code className="text-sm bg-gray-100 px-2 py-1 rounded">{results.saved_to}</code>
+              </p>
+            )}
           </div>
           
-          <div className="bg-gray-50 rounded-xl p-6 overflow-auto max-h-[600px]">
-            <pre className="text-sm text-gray-800 whitespace-pre-wrap break-words">
-              {JSON.stringify(results.data, null, 2)}
-            </pre>
-          </div>
+          {results.script ? (
+            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 overflow-auto max-h-[600px] border border-blue-200">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <h3 className="text-lg font-semibold text-gray-800">Carnegie vs Mellon Debate</h3>
+                </div>
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <pre className="text-sm text-gray-800 whitespace-pre-wrap break-words font-sans leading-relaxed">
+                    {results.script}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          ) : results.error ? (
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+              <p className="text-yellow-800 font-semibold mb-2">⚠️ Script Generation Error</p>
+              <p className="text-yellow-700 text-sm">{results.error}</p>
+              {results.data && (
+                <div className="mt-4 bg-gray-50 rounded-xl p-4 overflow-auto max-h-[400px]">
+                  <p className="text-sm font-semibold text-gray-700 mb-2">Raw Data:</p>
+                  <pre className="text-xs text-gray-800 whitespace-pre-wrap break-words">
+                    {JSON.stringify(results.data, null, 2)}
+                  </pre>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="bg-gray-50 rounded-xl p-6 overflow-auto max-h-[600px]">
+              <pre className="text-sm text-gray-800 whitespace-pre-wrap break-words">
+                {JSON.stringify(results.data, null, 2)}
+              </pre>
+            </div>
+          )}
         </div>
       )}
 
@@ -157,7 +199,7 @@ function App() {
         <div className="w-full max-w-6xl bg-white bg-opacity-95 rounded-3xl shadow-2xl p-8 backdrop-blur-sm">
           <div className="flex flex-col items-center justify-center py-12">
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-slate-600 mb-4"></div>
-            <p className="text-gray-600 text-lg">Analyzing debate perspectives...</p>
+            <p className="text-gray-600 text-lg">Generating debate script...</p>
           </div>
         </div>
       )}
