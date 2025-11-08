@@ -4,12 +4,6 @@ A web application that discovers trending political topics and analyzes debates 
 
 ## Features
 
-- 🔥 **Trending Topics**: Automatically fetches and displays current political topics from news
-- 🎨 **Beautiful UI**: Modern landing page built with React, TypeScript, and Tailwind CSS
-- 🔍 **AI-Powered Analysis**: Uses Perplexity's Sonar Pro Search for real-time debate analysis
-- 📊 **Balanced Perspectives**: Presents both liberal and conservative viewpoints with sources
-- 🔐 **Secure**: Environment variable management for API keys
-
 ## Tech Stack
 
 **Frontend:**
@@ -21,45 +15,38 @@ A web application that discovers trending political topics and analyzes debates 
 - FastAPI (Python)
 - OpenRouter API (Perplexity Sonar Pro Search)
 
-## Setup Instructions
+## Quick Start Guide
 
-### 1. Install Dependencies
 
-**Backend:**
+### 1. Open New Terminal (Terminal 1)
+
+
+### 2. Backend Command:
+
+
 ```bash
-pip install -r requirements.txt
+cd /Users/riamehta/Documents/GitHub/NovaHacks2025
+python3 -m uvicorn app:app --reload
 ```
 
-**Frontend:**
+
+The backend will start on `http://localhost:8000`
+
+
+### 3. Open New Terminal (Terminal 2)
+
+
+### 4. Frontend Command:
+
+
 ```bash
-cd frontend
-npm install
-```
-
-### 2. Configure Environment Variables
-
-Create a `.env` file in the root directory:
-```
-OPENROUTER_API_KEY=your_api_key_here
-NEWS_API_KEY=your_news_api_key_here  # Optional: for trending topics (get from https://newsapi.org)
-```
-
-**Note:** NEWS_API_KEY is optional. If not provided, the app will use fallback trending topics.
-
-### 3. Run the Application
-
-**Terminal 1 - Start Backend:**
-```bash
-uvicorn app:app --reload
-```
-Backend will run on `http://localhost:8000`
-
-**Terminal 2 - Start Frontend:**
-```bash
-cd frontend
+cd /Users/riamehta/Documents/GitHub/NovaHacks2025/frontend
 npm start
 ```
-Frontend will run on `http://localhost:3000`
+
+
+The frontend will start on `http://localhost:3000` and automatically open in your browser.
+
 
 ### 4. Use the App
 
