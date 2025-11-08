@@ -7,6 +7,7 @@ import json
 import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from search import generate_args
 from politics_news_scraper.news_scraper import NewsScraper
@@ -23,6 +24,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Serve audio files
+if os.path.exists("audio_output"):
+    app.mount("/audio", StaticFiles(directory="audio_output"), name="audio")
 
 class TopicRequest(BaseModel):
     topic: str
@@ -149,4 +154,36 @@ async def get_trending_topics():
     except Exception as e:
         print(f"Error fetching trending topics: {e}")
         return {"topics": fallback_topics}
+
+@app.get('/api/audio-files')
+async def get_audio_files():
+    """Get list of audio files from audio_output directory"""
+    import glob
+    
+    audio_dir = "audio_output"
+    if not os.path.exists(audio_dir):
+        return {"audio_files": []}
+    
+    # Get all MP3 files sorted by filename
+    audio_files = sorted(glob.glob(os.path.join(audio_dir, "*.mp3")))
+    
+    # Parse file info
+    audio_list = []
+    for file_path in audio_files:
+        filename = os.path.basename(file_path)
+        # Extract speaker from filename (format: 01_CARNEGIE_... or 01_MELLON_...)
+        if "CARNEGIE" in filename:
+            speaker = "CARNEGIE"
+        elif "MELLON" in filename:
+            speaker = "MELLON"
+        else:
+            speaker = "UNKNOWN"
+        
+        audio_list.append({
+            "filename": filename,
+            "path": f"/audio/{filename}",
+            "speaker": speaker
+        })
+    
+    return {"audio_files": audio_list}
 
