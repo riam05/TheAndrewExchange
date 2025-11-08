@@ -110,6 +110,14 @@ def main():
         categorized_articles = categorizer.categorize_articles(articles, categories)
         print("✅ Categorization complete")
         
+        # Step 3.5: Filter and validate categories
+        categorized_articles = categorizer.filter_and_validate_categories(
+            categorized_articles, 
+            article_summaries, 
+            articles
+        )
+        print(f"✅ {len(categorized_articles)} valid categories remaining")
+        
         # Step 4: Output results
         print("\n📊 Generating output...")
         format_output(categorized_articles, output_format="both")
