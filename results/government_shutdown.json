@@ -1,9 +1,9 @@
 {
-  "id": "gen-1762626597-8TV4EVVKMJvOIkPr6cMx",
+  "id": "gen-1762639171-VHH9xncnUy2bQO5FuIlS",
   "provider": "Perplexity",
   "model": "perplexity/sonar-pro-search",
   "object": "chat.completion",
-  "created": 1762626597,
+  "created": 1762639171,
   "choices": [
     {
       "logprobs": null,
@@ -12,15 +12,159 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "{\n  \"topic\": \"The current U.S. government shutdown debate\",\n  \"sides\": [    {\n      \"id\": \"A\",\n      \"label\": \"liberal\",\n      \"arguments\": [        \"Republicans are using the threat of a government shutdown as a political weapon to force extreme spending cuts and policy changes that do not reflect the will of the majority.\",\n        \"A shutdown would harm millions of Americans, including federal workers, military personnel, and those who rely on government services, all for partisan gain.\",\n        \"Democrats have already made significant compromises on spending, but conservatives continue to demand more, including controversial measures on immigration and social programs.\",\n        \"The refusal to pass a clean funding bill is irresponsible and undermines the stability of government operations.\",\n        \"Conservative demands, such as deep cuts to social safety nets and border security measures, are unrelated to basic government funding and should be debated separately.\"\n      ],\n      \"sources\": [        \"https://www.nytimes.com/2025/11/06/us/politics/government-shutdown-congress.html\",\n        \"https://www.cnn.com/2025/11/07/politics/government-shutdown-debate/index.html\"\n      ]\n    },\n    {\n      \"id\": \"B\",\n      \"label\": \"conservative\",\n      \"arguments\": [        \"Democrats are refusing to address out-of-control government spending, which is driving up the national debt and inflation.\",\n        \"A shutdown is necessary leverage to force meaningful fiscal reforms and rein in wasteful programs.\",\n        \"Republicans are demanding stronger border security and immigration enforcement as part of any funding deal, reflecting the priorities of their constituents.\",\n        \"Democrats are unwilling to negotiate on key issues, instead pushing for a 'blank check' to continue reckless spending.\",\n        \"The current crisis is the result of Democratic leadership failing to pass individual appropriations bills on time, instead relying on last-minute omnibus packages.\"\n      ],\n      \"sources\": [        \"https://www.foxnews.com/politics/government-shutdown-2025-republican-demands\",\n        \"https://www.nationalreview.com/2025/11/the-shutdown-showdown-why-republicans-are-right/\"\n      ]\n    }\n  ]\n}",
+        "content": "{\n  \"topic\": \"The current U.S. government shutdown debate\",\n  \"sides\": [    {\n      \"id\": \"A\",\n      \"label\": \"liberal\",\n      \"arguments\": [        \"Republicans are using the threat of a shutdown as political leverage to block funding for essential services and programs that benefit working families, such as healthcare and nutrition assistance[4][3].\",\n        \"Democrats argue that their budget proposals include necessary investments in healthcare, public housing, and social safety nets, which would expand coverage and lower costs for millions of Americans[4][3].\",\n        \"The shutdown disproportionately harms federal workers, veterans, and vulnerable populations who rely on government programs, and Democrats contend that Republicans are prioritizing fiscal brinkmanship over responsible governance[3][4].\",\n        \"Democrats claim that the conservative push to limit spending is a cover for cutting programs that help the poor and middle class, while refusing to negotiate on bipartisan solutions[5][4].\"\n      ],\n      \"sources\": [        \"https://usafacts.org/articles/the-2025-government-shutdown-is-the-longest-in-us-history/\",\n        \"https://escobar.house.gov/services/government-shutdown-resources\",\n        \"https://cbsnews.com/news/senate-holds-rare-saturday-session-aimed-at-ending-government-shutdown/\",\n        \"https://brookings.edu/articles/government-shutdowns-causes-and-effects/\"\n      ]\n    },\n    {\n      \"id\": \"B\",\n      \"label\": \"conservative\",\n      \"arguments\": [        \"Democrats are demanding $1.5 trillion in new spending, including billions for healthcare and benefits for illegal immigrants, which conservatives view as reckless and fiscally irresponsible[1][12].\",\n        \"Republicans argue that they have offered clean funding measures to keep the government open, but Democrats have rejected them in favor of partisan priorities and political brinkmanship[1][12].\",\n        \"Conservatives believe the shutdown is a result of Democrats prioritizing entitlements and expanding government dependency over fiscal discipline and border security[1][12].\",\n        \"The conservative stance is that government should serve American citizens first, focusing on security, infrastructure, and law enforcement, rather than funding ideological programs and benefits for non-citizens[1][12].\"\n      ],\n      \"sources\": [        \"https://whitehouse.gov/government-shutdown-clock/\",\n        \"https://politico.com/news/2025-government-shutdown-latest-news-top-stories-and-analysis/\",\n        \"https://politico.com/news/government-agencies-are-blaming-the-shutdown-on-democrats/\",\n        \"https://usafacts.org/articles/the-2025-government-shutdown-is-the-longest-in-us-history/\"\n      ]\n    }\n  ]\n}",
         "refusal": null,
-        "reasoning": null
+        "reasoning": null,
+        "annotations": [
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.whitehouse.gov/government-shutdown-clock/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government Shutdown Clock - The White House"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.brookings.edu/articles/what-is-a-government-shutdown-and-why-are-we-likely-to-have-another-one/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government Shutdowns: Causes and Effects - Brookings Institution"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://escobar.house.gov/shutdown/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government Shutdown Resources - Veronica Escobar - House.gov"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://usafacts.org/articles/government-shutdown-2025-what-to-know/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "The 2025 government shutdown is the longest in US history"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.cbsnews.com/live-updates/government-shutdown-latest-senate-weekend-session/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Senate holds rare Saturday session aimed at ending government ..."
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.politico.com/government-shutdown-news-updates-analysis",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "2025 Government Shutdown: Latest News, Top Stories and Analysis"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.hks.harvard.edu/faculty-research/policy-topics/democracy-governance/explainer-why-government-shutdowns-keep",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Explainer: Why government shutdowns keep happening in the ..."
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://poll.qu.edu/poll-release?releaseid=3938",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Who Is More Responsible For The Government Shutdown? Voters ..."
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.ncsl.org/in-dc/federal-government-shutdown-what-it-means-for-states-and-programs",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Federal Government Shutdown: What It Means for States and ..."
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://today.yougov.com/politics/articles/53352-are-people-changing-their-minds-about-the-shutdown",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Are people changing their minds about the shutdown? - YouGov"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://feea.org/shutdown/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government Shutdown: Essential Resources for Feds"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.politico.com/news/2025/10/01/shutdown-agencies-hatch-act-00590757",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government agencies are blaming the shutdown on Democrats ..."
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://ourpublicservice.org/shutdown/resources-for-federal-employees/",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Government shutdown resources for federal employees"
+            }
+          },
+          {
+            "type": "url_citation",
+            "url_citation": {
+              "url": "https://www.doi.gov/shutdown",
+              "start_index": 0,
+              "end_index": 0,
+              "title": "Operations in the Absence of Appropriations - DOI.gov"
+            }
+          }
+        ]
       }
     }
   ],
+  "citations": [
+    "https://www.whitehouse.gov/government-shutdown-clock/",
+    "https://www.brookings.edu/articles/what-is-a-government-shutdown-and-why-are-we-likely-to-have-another-one/",
+    "https://escobar.house.gov/shutdown/",
+    "https://usafacts.org/articles/government-shutdown-2025-what-to-know/",
+    "https://www.cbsnews.com/live-updates/government-shutdown-latest-senate-weekend-session/",
+    "https://www.politico.com/government-shutdown-news-updates-analysis",
+    "https://www.hks.harvard.edu/faculty-research/policy-topics/democracy-governance/explainer-why-government-shutdowns-keep",
+    "https://poll.qu.edu/poll-release?releaseid=3938",
+    "https://www.ncsl.org/in-dc/federal-government-shutdown-what-it-means-for-states-and-programs",
+    "https://today.yougov.com/politics/articles/53352-are-people-changing-their-minds-about-the-shutdown",
+    "https://feea.org/shutdown/",
+    "https://www.politico.com/news/2025/10/01/shutdown-agencies-hatch-act-00590757",
+    "https://ourpublicservice.org/shutdown/resources-for-federal-employees/",
+    "https://www.doi.gov/shutdown"
+  ],
   "usage": {
     "prompt_tokens": 186,
-    "completion_tokens": 477,
-    "total_tokens": 663
+    "completion_tokens": 591,
+    "total_tokens": 777
   }
 }
