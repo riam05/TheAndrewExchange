@@ -4,7 +4,7 @@ News scraper module for fetching recent politics-related articles.
 import requests
 from typing import List, Dict, Optional
 from datetime import datetime, timedelta
-from config import NEWS_API_KEY, NEWS_API_BASE_URL, ARTICLES_PER_CATEGORY
+from .config import NEWS_API_KEY, NEWS_API_BASE_URL, ARTICLES_PER_CATEGORY
 
 
 class NewsScraper:
@@ -13,7 +13,7 @@ class NewsScraper:
     def __init__(self, api_key: str = None):
         self.api_key = api_key or NEWS_API_KEY
         if not self.api_key:
-            raise ValueError("News API key is required. Set NEWS_API_KEY in .env file.")
+            print("Warning: News API key not set. Trending topics may use fallback values.")
     
     def fetch_recent_politics_articles(self, days_back: int = 7, max_articles: int = None) -> List[Dict]:
         """

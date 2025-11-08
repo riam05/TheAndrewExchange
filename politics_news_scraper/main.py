@@ -4,9 +4,9 @@ Fetches recent politics articles, dynamically categorizes them, and outputs resu
 """
 import json
 from datetime import datetime
-from news_scraper import NewsScraper
-from categorizer import DynamicCategorizer
-from config import ARTICLES_PER_CATEGORY
+from .news_scraper import NewsScraper
+from .categorizer import DynamicCategorizer
+from .config import ARTICLES_PER_CATEGORY
 
 
 def format_output(categorized_articles: dict, output_format: str = "console"):

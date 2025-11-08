@@ -5,6 +5,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from search import generate_args
+from politics_news_scraper.news_scraper import NewsScraper
+from politics_news_scraper.categorizer import DynamicCategorizer
 
 app = FastAPI()
 
@@ -62,4 +64,44 @@ async def analyze_topic(request: TopicRequest):
 async def health():
     """Health check endpoint"""
     return {"status": "ok"}
+
+@app.get('/api/trending-topics')
+async def get_trending_topics():
+    """Get trending political topics from recent news"""
+    try:
+        # Fetch recent politics articles
+        scraper = NewsScraper()
+        articles = scraper.fetch_recent_politics_articles(days_back=3, max_articles=20)
+        
+        if not articles:
+            return {"topics": [
+                "Government funding",
+                "Election updates",
+                "Foreign policy",
+                "Healthcare reform",
+                "Climate policy"
+            ]}
+        
+        # Generate topics using categorizer
+        cat = DynamicCategorizer()
+        article_summaries = [
+            scraper.format_article_for_categorization(article)
+            for article in articles[:10]
+        ]
+        
+        # Get categories as trending topics
+        topics = cat.generate_categories(article_summaries, num_categories=5)
+        
+        return {"topics": topics}
+        
+    except Exception as e:
+        print(f"Error fetching trending topics: {e}")
+        # Return fallback topics
+        return {"topics": [
+            "Government funding",
+            "Election updates",
+            "Foreign policy",
+            "Healthcare reform",
+            "Climate policy"
+        ]}
 

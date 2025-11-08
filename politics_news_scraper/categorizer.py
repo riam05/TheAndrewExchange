@@ -4,7 +4,7 @@ Dynamic categorizer module using OpenRouter API for categorizing politics articl
 import requests
 import json
 from typing import List, Dict, Set
-from config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, CATEGORIZATION_MODEL
+from .config import OPENROUTER_API_KEY, OPENROUTER_BASE_URL, CATEGORIZATION_MODEL
 
 
 class DynamicCategorizer:
@@ -71,8 +71,9 @@ Articles:
 
 Please:
 1. Identify the main themes and topics
-2. Create clear, descriptive category names (e.g., "Election Coverage", "Foreign Policy", "Legislative Updates", "Political Scandals")
-3. Return ONLY a JSON array of category names, nothing else
+2. Create clear, SPECIFIC category names (e.g., "Trump Tariffs", "Decreasing Housing Cost", "SNAP Payments")
+3. It is encouraged to include relevant names of people, organizations, or policies, but make sure to be specific.
+4. Return ONLY a JSON array of category names, nothing else
 
 Example format: ["Category 1", "Category 2", "Category 3"]
 """
