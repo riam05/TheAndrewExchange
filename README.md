@@ -2,8 +2,6 @@
 
 A web application that discovers trending political topics and analyzes debates from both liberal and conservative perspectives using AI.
 
-## Features
-
 ## Tech Stack
 
 **Frontend:**
@@ -85,14 +83,6 @@ NovaHacks2025/
 - `POST /api/analyze` - Analyze a political topic (custom or trending)
 - `GET /api/health` - Health check
 - Interactive API docs: `http://localhost:8000/docs`
-
-## How It Works
-
-1. **News Scraping**: Fetches recent political articles from News API
-2. **Topic Generation**: Uses Claude 3.5 Sonnet via OpenRouter to identify trending topics
-3. **User Selection**: User chooses a trending topic or enters their own
-4. **Debate Analysis**: Perplexity Sonar Pro analyzes the topic and generates arguments from both sides
-5. **Results Display**: Shows comprehensive debate analysis with sources
 
 ## Security Note
 
