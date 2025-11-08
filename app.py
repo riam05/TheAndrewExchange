@@ -5,6 +5,9 @@ FastAPI backend for analyzing political debates and generating trending topics.
 import os
 import json
 import requests
+import asyncio
+import glob
+import shutil
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -13,6 +16,7 @@ from search import generate_args
 from politics_news_scraper.news_scraper import NewsScraper
 from politics_news_scraper.categorizer import DynamicCategorizer
 from script_generator import generate_script_from_debate_json, save_script_to_file
+from videogenerator import generate_audio_from_script
 
 app = FastAPI(title="Political Debate Analyzer API")
 
@@ -36,12 +40,13 @@ class TopicRequest(BaseModel):
 async def analyze_topic(request: TopicRequest):
     """
     Analyze a political topic from liberal and conservative perspectives.
+    Generates debate JSON → script → audio files.
     
     Args:
         request: TopicRequest containing the topic to analyze
         
     Returns:
-        dict: Analysis results with both political perspectives
+        dict: Analysis results with audio files
     """
     topic = request.topic.strip()
     
@@ -49,10 +54,14 @@ async def analyze_topic(request: TopicRequest):
         raise HTTPException(status_code=400, detail="Topic is required")
     
     try:
-        # Generate API call arguments
+        print(f"\n{'='*80}")
+        print(f"🎯 FULL PIPELINE: Analyzing '{topic}'")
+        print(f"{'='*80}")
+        
+        # Step 1: Generate debate JSON using OpenRouter API
+        print("📊 Step 1/4: Generating debate arguments...")
         headers, payload = generate_args(topic)
         
-        # Make the API call to OpenRouter
         response = requests.post(
             "https://openrouter.ai/api/v1/chat/completions",
             headers=headers,
@@ -63,48 +72,100 @@ async def analyze_topic(request: TopicRequest):
         
         result = response.json()
         
-        # Save results to file
+        # Save debate JSON to file
         os.makedirs("results", exist_ok=True)
         safe_filename = "".join(c if c.isalnum() else "_" for c in topic.lower())[:100]
         output_path = os.path.join("results", f"{safe_filename}.json")
         
         with open(output_path, "w") as f:
             json.dump(result, f, indent=2)
+        print(f"   ✓ Debate JSON saved to {output_path}")
         
-        # Extract debate JSON from the response
+        # Step 2: Extract and parse debate JSON from the response
+        print("📝 Step 2/4: Parsing debate content...")
         try:
             content = result["choices"][0]["message"]["content"]
-            # Parse the JSON content
+            
+            # Remove markdown code blocks if present
             if content.strip().startswith("```"):
-                # Remove markdown code blocks
                 content = content.split("```")[1]
                 if content.startswith("json"):
                     content = content[4:]
                 content = content.strip()
             
             debate_json = json.loads(content)
+            print(f"   ✓ Debate JSON parsed successfully")
             
-            # Generate script from debate JSON
+            # Step 3: Generate script from debate JSON
+            print("🎬 Step 3/4: Generating debate script...")
             script = generate_script_from_debate_json(debate_json)
-            
-            # Save script to new_script.txt
             script_path = save_script_to_file(script, "new_script.txt")
+            print(f"   ✓ Script saved to {script_path}")
             
-            return {
-                "success": True,
-                "script": script,
-                "script_path": script_path,
-                "debate_data": debate_json,
-                "saved_to": output_path
-            }
+            # Step 4: Generate audio files from the script
+            print("🎤 Step 4/4: Generating audio files...")
+            
+            # Clear old audio files first
+            audio_dir = "audio_output"
+            if os.path.exists(audio_dir):
+                print(f"   🗑️  Clearing old audio files...")
+                shutil.rmtree(audio_dir)
+            os.makedirs(audio_dir, exist_ok=True)
+            
+            # Generate audio files
+            try:
+                audio_files = await generate_audio_from_script(script_path, audio_dir)
+                print(f"   ✓ Generated {len(audio_files)} audio files")
+                
+                # Get audio file info for response
+                audio_file_list = []
+                for speaker, text, audio_path in audio_files:
+                    filename = os.path.basename(audio_path)
+                    audio_file_list.append({
+                        "filename": filename,
+                        "path": f"/audio/{filename}",
+                        "speaker": speaker
+                    })
+                
+                print(f"\n{'='*80}")
+                print(f"✅ PIPELINE COMPLETE!")
+                print(f"   - Debate JSON: {output_path}")
+                print(f"   - Script: {script_path}")
+                print(f"   - Audio files: {len(audio_file_list)} segments in {audio_dir}/")
+                print(f"{'='*80}\n")
+                
+                return {
+                    "success": True,
+                    "script": script,
+                    "script_path": script_path,
+                    "debate_data": debate_json,
+                    "saved_to": output_path,
+                    "audio_files": audio_file_list,
+                    "audio_count": len(audio_file_list)
+                }
+                
+            except Exception as audio_error:
+                print(f"   ✗ Audio generation failed: {audio_error}")
+                # Return script without audio if audio generation fails
+                return {
+                    "success": True,
+                    "script": script,
+                    "script_path": script_path,
+                    "debate_data": debate_json,
+                    "saved_to": output_path,
+                    "error": f"Audio generation failed: {str(audio_error)}",
+                    "audio_files": []
+                }
+            
         except (json.JSONDecodeError, KeyError, Exception) as e:
-            print(f"Error generating script: {e}")
+            print(f"   ✗ Script generation error: {e}")
             # If script generation fails, still return the original data
             return {
                 "success": True,
                 "data": result,
                 "saved_to": output_path,
-                "error": f"Script generation failed: {str(e)}"
+                "error": f"Script generation failed: {str(e)}",
+                "audio_files": []
             }
         
     except requests.exceptions.RequestException as e:

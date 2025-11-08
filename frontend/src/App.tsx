@@ -158,7 +158,7 @@ function App() {
         {/* Trending Topics */}
         {!loadingTopics && trendingTopics.length > 0 && (
           <div className="mb-8">
-            <p className="text-white/90 text-sm font-semibold mb-3 uppercase tracking-wide">🔥 Trending Topics</p>
+            <p className="text-white/90 text-sm font-semibold mb-3 uppercase tracking-wide">Trending Topics</p>
             <div className="flex flex-wrap gap-2 justify-center">
               {trendingTopics.map((trendingTopic, index) => (
                 <button
@@ -308,9 +308,6 @@ function App() {
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold">
-                          {audioFile.speaker === 'CARNEGIE' ? '🎤' : '🎙️'}
-                        </span>
                         <span className="text-sm font-medium">
                           Segment {index + 1} - {audioFile.speaker}
                         </span>
@@ -322,7 +319,7 @@ function App() {
             </div>
           ) : results.error ? (
             <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
-              <p className="text-yellow-800 font-semibold mb-2">⚠️ Script Generation Error</p>
+              <p className="text-yellow-800 font-semibold mb-2">Warning: Script Generation Error</p>
               <p className="text-yellow-700 text-sm">{results.error}</p>
             </div>
           ) : (
@@ -353,7 +350,13 @@ function App() {
         <div className="w-full max-w-6xl bg-white bg-opacity-95 rounded-3xl shadow-2xl p-8 backdrop-blur-sm">
           <div className="flex flex-col items-center justify-center py-12">
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-slate-600 mb-4"></div>
-            <p className="text-gray-600 text-lg">Generating debate script...</p>
+            <p className="text-gray-800 text-xl font-semibold mb-4">Creating Your Debate</p>
+            <div className="space-y-2 text-center text-gray-600">
+              <p>Analyzing political perspectives...</p>
+              <p>Generating debate script...</p>
+              <p>Creating audio with AI voices...</p>
+              <p className="text-sm text-gray-500 mt-4">This may take 30-60 seconds</p>
+            </div>
           </div>
         </div>
       )}
