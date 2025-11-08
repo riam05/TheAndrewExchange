@@ -1,9 +1,9 @@
 {
-  "id": "gen-1762632694-6KIofaaUSBYqJIDJqBKK",
+  "id": "gen-1762626597-8TV4EVVKMJvOIkPr6cMx",
   "provider": "Perplexity",
   "model": "perplexity/sonar-pro-search",
   "object": "chat.completion",
-  "created": 1762632694,
+  "created": 1762626597,
   "choices": [
     {
       "logprobs": null,
@@ -12,15 +12,15 @@
       "index": 0,
       "message": {
         "role": "assistant",
-        "content": "{\n  \"topic\": \"The current U.S. government shutdown debate\",\n  \"sides\": [    {\n      \"id\": \"A\",\n      \"label\": \"liberal\",\n      \"arguments\": [        \"Republicans are using the threat of a government shutdown as a political weapon to force extreme policy concessions, particularly on immigration and social spending.\",\n        \"A shutdown would harm millions of Americans by disrupting essential services, delaying pay for federal workers, and undermining economic stability.\",\n        \"The conservative push for deep spending cuts targets programs that support vulnerable populations, such as food assistance and healthcare, which liberals argue are vital for social safety.\",\n        \"Liberals contend that the budget process should not be hijacked by a minority of hardline conservatives, and that bipartisan compromise is necessary to keep the government functioning.\"\n      ],\n      \"sources\": [        \"https://www.nytimes.com/2025/11/07/us/politics/government-shutdown-congress.html\",\n        \"https://www.cnn.com/2025/11/07/politics/government-shutdown-explained/index.html\"\n      ]\n    },\n    {\n      \"id\": \"B\",\n      \"label\": \"conservative\",\n      \"arguments\": [        \"Conservatives argue that the federal government is overspending and that a shutdown is a necessary tool to force fiscal responsibility and rein in the national debt.\",\n        \"They believe Democrats refuse to negotiate on border security and immigration enforcement, which conservatives see as critical national priorities.\",\n        \"Many conservatives claim that temporary shutdowns are less harmful than unchecked government growth and that tough stances are needed to achieve meaningful policy reforms.\",\n        \"They assert that the blame for a shutdown lies with Democrats\u2019 unwillingness to accept spending cuts and policy changes demanded by the Republican majority in the House.\"\n      ],\n      \"sources\": [        \"https://www.foxnews.com/politics/government-shutdown-looming-gop-demands\",\n        \"https://www.nationalreview.com/2025/11/the-case-for-holding-the-line-on-spending/\"\n      ]\n    }\n  ]\n}",
+        "content": "{\n  \"topic\": \"The current U.S. government shutdown debate\",\n  \"sides\": [    {\n      \"id\": \"A\",\n      \"label\": \"liberal\",\n      \"arguments\": [        \"Republicans are using the threat of a government shutdown as a political weapon to force extreme spending cuts and policy changes that do not reflect the will of the majority.\",\n        \"A shutdown would harm millions of Americans, including federal workers, military personnel, and those who rely on government services, all for partisan gain.\",\n        \"Democrats have already made significant compromises on spending, but conservatives continue to demand more, including controversial measures on immigration and social programs.\",\n        \"The refusal to pass a clean funding bill is irresponsible and undermines the stability of government operations.\",\n        \"Conservative demands, such as deep cuts to social safety nets and border security measures, are unrelated to basic government funding and should be debated separately.\"\n      ],\n      \"sources\": [        \"https://www.nytimes.com/2025/11/06/us/politics/government-shutdown-congress.html\",\n        \"https://www.cnn.com/2025/11/07/politics/government-shutdown-debate/index.html\"\n      ]\n    },\n    {\n      \"id\": \"B\",\n      \"label\": \"conservative\",\n      \"arguments\": [        \"Democrats are refusing to address out-of-control government spending, which is driving up the national debt and inflation.\",\n        \"A shutdown is necessary leverage to force meaningful fiscal reforms and rein in wasteful programs.\",\n        \"Republicans are demanding stronger border security and immigration enforcement as part of any funding deal, reflecting the priorities of their constituents.\",\n        \"Democrats are unwilling to negotiate on key issues, instead pushing for a 'blank check' to continue reckless spending.\",\n        \"The current crisis is the result of Democratic leadership failing to pass individual appropriations bills on time, instead relying on last-minute omnibus packages.\"\n      ],\n      \"sources\": [        \"https://www.foxnews.com/politics/government-shutdown-2025-republican-demands\",\n        \"https://www.nationalreview.com/2025/11/the-shutdown-showdown-why-republicans-are-right/\"\n      ]\n    }\n  ]\n}",
         "refusal": null,
         "reasoning": null
       }
     }
   ],
   "usage": {
-    "prompt_tokens": 182,
-    "completion_tokens": 443,
-    "total_tokens": 625
+    "prompt_tokens": 186,
+    "completion_tokens": 477,
+    "total_tokens": 663
   }
 }

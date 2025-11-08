@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 
+# Results
+results/
+
 # Python
 __pycache__/
 *.py[cod]
@@ -58,3 +61,8 @@ dmypy.json
 
 # Logs
 *.log
+
+# React / Node
+node_modules/
+frontend/build/
+frontend/.env
