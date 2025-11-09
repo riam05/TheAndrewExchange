@@ -24,12 +24,8 @@ A web application that discovers trending political topics, analyzes debates fro
 
 
 ```bash
-cd /Users/riamehta/Documents/GitHub/NovaHacks2025
 python3 -m uvicorn app:app --reload
 ```
-
-
-The backend will start on `http://localhost:8000`
 
 
 ### 3. Open New Terminal (Terminal 2)
@@ -39,17 +35,14 @@ The backend will start on `http://localhost:8000`
 
 
 ```bash
-cd /Users/riamehta/Documents/GitHub/NovaHacks2025/frontend
 npm start
 ```
 
 
-The frontend will start on `http://localhost:3000` and automatically open in your browser.
-
 
 ### 5. Use the App
 
-1. Open `http://localhost:3000` in your browser
+1. Open in your browser
 2. See trending political topics displayed at the top
 3. **Either**:
    - Click a trending topic to select it
@@ -97,35 +90,3 @@ NovaHacks2025/
     ├── tailwind.config.js      # Tailwind config
     └── package.json            # Node dependencies
 ```
-
-## API Endpoints
-
-- `GET /api/trending-topics` - Get current trending political topics (from news)
-- `POST /api/analyze` - **Full Pipeline**: Analyze topic → Generate script → Create audio files
-- `GET /api/audio-files` - List all generated audio files
-- `GET /audio/{filename}` - Stream/download specific audio file
-- `GET /api/health` - Health check
-- Interactive API docs: `http://localhost:8000/docs`
-
-## Environment Variables
-
-Create a `.env` file in the root directory with:
-
-```bash
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
-NEWS_API_KEY=your_news_api_key_here
-
-# Optional: Custom voice IDs for Eleven Labs
-ELEVENLABS_CARNEGIE_VOICE_ID=pNInz6obpgDQGcFmaJgB  # Default: Adam
-ELEVENLABS_MELLON_VOICE_ID=VR6AewLTigWG4xSOukaG   # Default: Arnold
-```
-
-To list available Eleven Labs voices, run:
-```bash
-python videogenerator.py --list-voices
-```
-
-## Security Note
-
-Never commit your `.env` file or expose your API keys. The `.gitignore` is configured to exclude sensitive files.
