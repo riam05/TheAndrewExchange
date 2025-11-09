@@ -239,12 +239,12 @@ function App() {
                     alt="Andrew Mellon" 
                     className={`w-48 h-48 rounded-full object-cover border-4 transition-all ${
                       currentSpeaker === 'MELLON' 
-                        ? 'border-orange-500 shadow-2xl' 
+                        ? 'border-red-500 shadow-2xl' 
                         : 'border-gray-300 shadow-md'
                     }`}
                     onError={(e) => {
                       // Fallback to placeholder if image doesn't exist
-                      (e.target as HTMLImageElement).src = 'https://via.placeholder.com/200/C89664/FFFFFF?text=Mellon';
+                      (e.target as HTMLImageElement).src = 'https://via.placeholder.com/200/EF4444/FFFFFF?text=Mellon';
                     }}
                   />
                   <p className="mt-4 text-lg font-semibold text-gray-800">Andrew Mellon</p>
@@ -304,7 +304,7 @@ function App() {
                           ? 'bg-blue-500 text-white shadow-lg'
                           : audioFile.speaker === 'CARNEGIE'
                           ? 'bg-blue-100 hover:bg-blue-200 text-gray-800'
-                          : 'bg-orange-100 hover:bg-orange-200 text-gray-800'
+                          : 'bg-red-100 hover:bg-red-200 text-gray-800'
                       }`}
                     >
                       <div className="flex items-center gap-2">
